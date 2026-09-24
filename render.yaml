@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: discord-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -u bot.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: ZAI_API_KEY
+        sync: false
+      - key: AUTO_RESPOND_CHANNEL_IDS
+        sync: false
+      - key: DEFAULT_PERSONA
+        value: friendly
+      - key: ZAI_MODEL
+        value: glm-4-flash  # ฟรีโควต้า!
+      - key: LOG_LEVEL
+        value: INFO

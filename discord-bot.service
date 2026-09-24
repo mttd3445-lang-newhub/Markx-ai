@@ -1,0 +1,20 @@
+[Unit]
+Description=Discord Bot (Z.ai GLM)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=discord
+WorkingDirectory=/opt/discord-bot
+EnvironmentFile=/opt/discord-bot/.env
+ExecStart=/usr/bin/python3 -u /opt/discord-bot/bot.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/var/log/discord-bot.log
+StandardError=append:/var/log/discord-bot.log
+MemoryMax=512M
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target
